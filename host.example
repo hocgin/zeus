@@ -1,0 +1,3 @@
+127.0.0.1 sv-mysql.basic
+127.0.0.1 sv-nacos.basic
+127.0.0.1 sv-redis.basic

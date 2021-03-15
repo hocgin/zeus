@@ -1,0 +1,9 @@
+sso:
+  oauth:
+    clients:
+      - client-id: client_example
+        client-secret: hocgin
+        redirect-uris:
+          - http://api.hocgin.local/login/oauth2/code/custom
+          - http://sba.hocgin.local/login/oauth2/code/custom
+          - http://logistics.hocgin.local/login/oauth2/code/custom

@@ -1,0 +1,4 @@
+spring:
+  security:
+    oauth2:
+      shostname: https://sso.hocgin.top

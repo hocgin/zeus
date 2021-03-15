@@ -1,0 +1,66 @@
+spring:
+  profiles:
+    active: local
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedHeaders: "*"
+            allowedOrigins:
+              - '*'
+              - '127.0.0.1:8000'
+            allowedMethods: "*"
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+      routes:
+        - id: zeus-sso
+          uri: lb://zeus-sso
+          predicates:
+            - Path=/sso/**
+          filters:
+            - StripPrefix=1
+
+        - id: zeus-tpl
+          uri: lb://zeus-tpl
+          predicates:
+            - Path=/tpl/**
+          filters:
+            - StripPrefix=1
+
+      default-filters:
+        - name: SwaggerHeaderFilter
+        - name: Logger
+        - name: SaveSession
+      loadbalancer:
+        use404: true
+  security:
+    oauth2:
+      shostname: http://sso.hocgin.top
+      client:
+        registration:
+          custom:
+            client-id: client_example
+            client-secret: hocgin
+            redirect-uri: '{baseUrl}/{action}/oauth2/code/{registrationId}'
+            authorization-grant-type: authorization_code
+        provider:
+          custom:
+            user-info-uri: ${spring.security.oauth2.shostname}/oauth/user
+            authorization-uri: ${spring.security.oauth2.shostname}/oauth/authorize
+            token-uri: ${spring.security.oauth2.shostname}/oauth/token
+            user-name-attribute: name
+debug: true
+boot:
+  sso:
+    client:
+      authenticated-urls:
+        - /login
+      ignore-urls: >
+        ,/**
+zeus:
+  gateway:
+    authorize:
+      ignore-urls: ${boot.sso.client.ignore-urls}
+        ,/**

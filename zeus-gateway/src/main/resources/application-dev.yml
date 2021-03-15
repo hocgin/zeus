@@ -1,0 +1,13 @@
+debug: true
+logging:
+  level:
+    root: debug
+spring:
+  security:
+    oauth2:
+      shostname: https://sso-dev.hocgin.top
+boot:
+  sso:
+    client:
+      ignore-urls: >
+        /**

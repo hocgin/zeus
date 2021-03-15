@@ -1,0 +1,53 @@
+logging:
+  level:
+    in.hocg: debug
+    in.hocg.zeus: debug
+spring:
+  profiles:
+    active: local
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    username: root
+    password: use_youself_config
+    druid:
+      validation-query: SELECT 1
+      test-while-idle: true
+  redis:
+    database: 0
+    port: 6379
+    timeout: 1000
+mybatis-plus:
+  mapper-locations: classpath*:/**/xml/*.xml
+
+boot:
+  oss:
+    accessKey: ENC(use_youself_config)
+    secretKey: ENC(use_youself_config)
+    space: zeus-test
+    domain: http://oss-cn-beijing.aliyuncs.com
+    type: AliYun
+  cache:
+    names:
+      - name: INIT_CACHE
+        ttl: 1D
+  mail:
+    host: smtp.163.com
+    from: "HOCGIN 官方邮件<13600***016@163.com>"
+    user: 13600***016@163.com
+    pass: ENC(use_youself_config)
+
+zeus:
+  wx:
+    # https://developers.weixin.qq.com/sandbox
+    miniapp:
+      configs:
+        - appid: wx19d2028bfdc4decf
+          secret: ENC(use_youself_config)
+    # https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&t=sandbox/index
+    mp:
+      configs:
+        - appid: wx6c554c6d25b19c4a
+          secret: ENC(use_youself_config)
+          token: ENC(use_youself_config)
+  payment:
+    url-prefix: https://api.hocgin.top/pay

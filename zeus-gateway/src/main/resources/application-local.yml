@@ -1,0 +1,9 @@
+spring:
+  security:
+    oauth2:
+      shostname: http://sso.hocgin.local
+boot:
+  sso:
+    client:
+      ignore-urls: >
+        /**

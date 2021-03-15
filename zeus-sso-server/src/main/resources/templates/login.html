@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" href="//hocg.in/favicon.ico" crossorigin="anonymous" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+    <title>登陆/注册 - HOCGIN</title>
+</head>
+<body>
+<div class="container">
+    <div class="forms-container">
+        <div class="signin-signup">
+            <form method="post" th:action="@{/login}" class="sign-in-form">
+                <div class="wrapper-box">
+                    <h2 class="title">登录</h2>
+                    <div class="input-field">
+                        <i class="fa fa-user"></i>
+                        <input type="text" name="username" placeholder="账号" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" name="password" placeholder="密码" />
+                    </div>
+                    <div class="login-info">
+                        <div class="error-info" id="login-error" th:if="${not #strings.isEmpty(param.error)}">
+                            用户名或密码错误
+                        </div>
+                        <a th:href="@{/forgot}" class="forgot">忘记密码？</a>
+                    </div>
+                    <button type="submit" class="btn solid">登陆</button>
+                    <div class="social-text">
+                        <div>社交帐号登录</div>
+                        <div class="social-media">
+                            <!--                    <form th:action="@{/oauth2/authorization/github}" method="GET">-->
+                            <!--                        &lt;!&ndash;    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>&ndash;&gt;-->
+                            <!--                        <input type="hidden" name="scope" value="read_stream,user_posts,user_photos"/>-->
+                            <!--                        <button type="submit">GitHub</button>-->
+                            <!--                    </form>-->
+                            <a th:href="@{/oauth2/authorization/github(scope='read_stream,user_posts,user_photos')}"
+                               class="social-icon">
+                                <i class="fa fa-github"></i>
+                            </a>
+                            <a href="javascript:;;" id="get-wx-qrcode" class="social-icon">
+                                <i class="fa fa-wechat"></i>
+                                <img id="wx-qrcode" class="social-qrcode" alt="点击获取二维码"
+                                     width="60px" height="60px" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form method="post" th:href="@{/join}" action="#"
+                  id="sign-up-form" class="sign-up-form">
+                <div class="wrapper-box">
+                    <h2 class="title">注册账户</h2>
+                    <div class="input-field">
+                        <i class="fa fa-user"></i>
+                        <input type="text" name="username" placeholder="用户名" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fa fa-phone"></i>
+                        <input type="text" name="phone" placeholder="手机号" />
+                    </div>
+                    <div class="input-field sms">
+                        <i class="fa fa-keyboard-o"></i>
+                        <input type="text" name="sms" placeholder="验证码" />
+                        <span class="verification-code" id="get-verify-code" deftext="获取验证码">获取验证码</span>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" name="password" placeholder="密码" />
+                    </div>
+                    <button type="button" class="btn" id="join-btn">注册</button>
+                    <div class="error-info" id="join-error"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panels-container">
+        <div class="panel left-panel">
+            <div class="content">
+                <h3>没有账号?</h3>
+                <p class="saying">
+                    聪明的年轻人以为，如果承认已经被别人承认过的真理，就会使自己丧失独创性，这是最大的错误。
+                <div class="author">—— 歌德</div>
+                </p>
+                <button class="btn transparent" id="sign-up-btn">
+                    注册
+                </button>
+            </div>
+            <img th:src="@{/images/login.svg}" class="image" alt="" />
+        </div>
+        <div class="panel right-panel">
+            <div class="content">
+                <h3>已有账号？</h3>
+                <p class="saying">
+                    今天所做之事勿候明天，自己所做之事勿候他人。
+                <div class="author">—— 歌德</div>
+                </p>
+                <button class="btn transparent" id="sign-in-btn">
+                    登陆
+                </button>
+            </div>
+            <img th:src="@{/images/register.svg}" class="image" alt="" />
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/app.js}"></script>
+</body>
+</html>

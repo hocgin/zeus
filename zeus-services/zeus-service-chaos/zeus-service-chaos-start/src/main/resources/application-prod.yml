@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://sv-mysql.basic:3306/db_chaos?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&allowPublicKeyRetrieval=true
+    username: root
+    password: use_youself_config
+  redis:
+    host: sv-redis.basic
+    port: 6379
+    database: 0
