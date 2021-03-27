@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.lotus.com.biz.mapper.FileMapper">
+  <select id="listByRefTypeAndRefIdOrderBySortDescAndCreatedAtDesc"
+          resultType="in.hocg.zeus.com.biz.entity.File">
+    SELECT tf.*
+    FROM com_file tf
+    WHERE tf.ref_type = #{refType}
+      AND tf.ref_id = #{refId}
+    ORDER BY tf.priority DESC, tf.created_at DESC
+  </select>
+</mapper>

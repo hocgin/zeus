@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="in.hocg.zeus.ums.biz.mapper.SocialMapper">
+
+    <select id="getAccountBySocialTypeAndSocialId" resultType="in.hocg.zeus.ums.biz.entity.User">
+      SELECT ua.* FROM ums_user ua
+        LEFT JOIN ums_social us ON us.user_id = ua.id
+      <where>
+        us.social_type = #{socialType}
+        AND us.social_id = #{socialId}
+      </where>
+    </select>
+</mapper>

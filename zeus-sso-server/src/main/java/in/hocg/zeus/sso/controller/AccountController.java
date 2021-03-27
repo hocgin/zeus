@@ -1,8 +1,9 @@
 package in.hocg.zeus.sso.controller;
 
+import in.hocg.boot.web.result.Result;
 import in.hocg.zeus.sso.pojo.ro.JoinAccountRo;
 import in.hocg.zeus.sso.pojo.ro.LoginRo;
-import in.hocg.boot.web.result.Result;
+import in.hocg.zeus.sso.service.AccountService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -25,18 +26,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/account")
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
 public class AccountController {
+    private final AccountService service;
 
     @ApiOperation("获取 Token")
     @PostMapping("/login/token")
     @ResponseBody
     public Result<String> login(@RequestBody LoginRo ro) {
-        throw new UnsupportedOperationException();
+        return Result.success(service.login(ro));
     }
 
     @ApiOperation("注册账号")
     @PostMapping("/join")
     @ResponseBody
     public Result<String> join(@RequestBody JoinAccountRo ro) {
-        throw new UnsupportedOperationException();
+        return Result.success(service.join(ro));
     }
 }

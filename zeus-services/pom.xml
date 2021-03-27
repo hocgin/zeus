@@ -16,6 +16,8 @@
   <modules>
     <module>zeus-service-tpl</module>
     <module>zeus-service-chaos</module>
+    <module>zeus-service-ums</module>
+    <module>zeus-service-com</module>
   </modules>
 
 </project>

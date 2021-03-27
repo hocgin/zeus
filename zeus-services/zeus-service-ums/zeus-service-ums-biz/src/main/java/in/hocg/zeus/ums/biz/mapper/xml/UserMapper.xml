@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="in.hocg.zeus.ums.biz.mapper.UserMapper">
+  <select id="paging" resultType="in.hocg.zeus.ums.biz.entity.User">
+    SELECT ua.*
+    FROM ums_user ua
+    <where>
+      <if test="ro.keyword != null">
+        <bind name="keyword" value="'%' + ro.keyword + '%'"/>
+        AND (ua.nickname LIKE #{keyword} OR ua.username LIKE #{keyword} OR ua.phone LIKE #{keyword} OR ua.email
+        LIKE #{keyword})
+      </if>
+    </where>
+  </select>
+
+  <select id="complete" resultType="in.hocg.zeus.ums.biz.entity.User">
+    SELECT ua.*
+    FROM ums_user ua
+    <where>
+      <if test="ro.keyword != null">
+        <bind name="keyword" value="'%' + ro.keyword + '%'"/>
+        AND (ua.nickname LIKE #{keyword} OR ua.username LIKE #{keyword} OR ua.phone LIKE #{keyword} OR ua.email
+        LIKE #{keyword})
+      </if>
+    </where>
+  </select>
+</mapper>

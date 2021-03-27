@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="in.hocg.zeus.ums.biz.mapper.UserGroupUserRefMapper">
+  <select id="listByUserId" resultType="in.hocg.zeus.ums.biz.entity.UserGroup">
+    SELECT aug.*
+    FROM ams_user_group aug
+           LEFT JOIN ams_user_group_user_ref augur on aug.id = augur.user_group_id
+    WHERE augur.user_id = #{userId}
+  </select>
+</mapper>

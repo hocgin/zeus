@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="in.hocg.zeus.com.biz.mapper.DataDictMapper">
+  <select id="listDataDictItemByDictIdAndCode" resultType="in.hocg.zeus.com.biz.entity.DataDictItem">
+    SELECT tddi.*
+    FROM com_data_dict tdd
+           LEFT JOIN com_data_dict_item tddi ON tdd.id = tddi.dict_id
+    <where>
+      tdd.code = #{typeCode}
+      <if test="itemCodes != null">
+        <foreach collection="itemCodes" item="item" separator="," open="AND tddi.code IN(" close=")">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+  </select>
+
+  <select id="getDataDictItemByDictIdAndCode" resultType="in.hocg.zeus.com.biz.entity.DataDictItem">
+    SELECT tddi.*
+    FROM com_data_dict tdd
+           LEFT JOIN com_data_dict_item tddi ON tdd.id = tddi.dict_id
+    <where>
+      tdd.code = #{typeCode}
+        AND tddi.code = #{itemCode}
+    </where>
+    LIMIT 1
+  </select>
+
+  <select id="listDataDictItemByCodeAndEnabled" resultType="in.hocg.zeus.com.biz.entity.DataDictItem">
+    SELECT tddi.*
+    FROM com_data_dict_item tddi
+           LEFT JOIN com_data_dict tdd ON tdd.id = tddi.dict_id
+    <where>
+      tdd.code = #{typeCode}
+      <if test="enabled != null">
+        AND tdd.enabled = #{enabled}
+        AND tddi.enabled = #{enabled}
+      </if>
+    </where>
+    ORDER BY tddi.priority DESC, tddi.created_at DESC
+  </select>
+
+  <select id="paging" resultType="in.hocg.zeus.com.biz.entity.DataDict">
+    SELECT *
+    FROM com_data_dict
+  </select>
+</mapper>

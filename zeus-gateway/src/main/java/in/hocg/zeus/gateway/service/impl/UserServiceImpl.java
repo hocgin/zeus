@@ -1,6 +1,7 @@
 package in.hocg.zeus.gateway.service.impl;
 
 import in.hocg.zeus.gateway.service.UserService;
+import in.hocg.zeus.ums.api.AuthorityServiceApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,11 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
 public class UserServiceImpl implements UserService {
+    private final AuthorityServiceApi authorityServiceApi;
 
     @Override
     public boolean isPassAuthorize(String username, String servicePrefix, String methodName, String uri) {
         // 判定是否有权限
-        return true;
+        return authorityServiceApi.isPassAuthorize(username, servicePrefix, methodName, uri);
     }
 }
