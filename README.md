@@ -1,5 +1,8 @@
 # zeus
 > 这是一个 Spring Cloud 项目，使用了 GitHub Action + K8s，集成了单点登陆。
+> - 基于 Github Action + Kubernetes 实现了 CI/CD
+> - 实现了单点登陆、社交登陆(Github、公众号关注登陆)入口
+> - 实现了 RBAC 权限控制
 
 ## 编译项目
 ```shell
