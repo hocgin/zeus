@@ -30,7 +30,7 @@
     <lombok.version>1.18.12</lombok.version>
     <mybatis-plus.version>3.3.0</mybatis-plus.version>
     <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
-    <guava.version>28.1-jre</guava.version>
+    <guava.version>29.0-jre</guava.version>
     <hutool-all.version>5.3.10</hutool-all.version>
     <qiniu-java-sdk.version>[7.2.0, 7.2.99]</qiniu-java-sdk.version>
     <aliyun-oss.version>2.8.3</aliyun-oss.version>
