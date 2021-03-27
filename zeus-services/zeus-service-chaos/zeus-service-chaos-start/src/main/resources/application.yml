@@ -23,7 +23,7 @@ boot:
   oss:
     accessKey: ENC(use_youself_config)
     secretKey: ENC(use_youself_config)
-    space: zeus-test
+    space: use_youself_config
     domain: http://oss-cn-beijing.aliyuncs.com
     type: AliYun
   cache:
